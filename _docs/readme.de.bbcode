@@ -1,0 +1,30 @@
+Sammlung herstellerneutraler KI-Agenten-Skills als strikter „Discipline Layer“ für die Entwicklung von XenForo 2.3 Add-ons. Die Skills ergänzen die offiziellen XenForo-Skills ([ICODE]php cmd.php xf-dev:install-ai-agents[/ICODE]) gezielt um Architektur-, Sicherheits- und Kompatibilitätsregeln, damit KI-generierter Code echte produktive Installationen und Code-Reviews besteht.
+
+[HEADING=2]Enthaltene Skills[/HEADING]
+[LIST]
+[*][B]xf23-strict-policy[/B] – Universelle XenForo 2.3 Entwicklungs- und Architektur-Guardrails:
+[LIST]
+[*][B]Co-Install-Sicherheit (XFCP_)[/B]: Erzwingt 1:1-Methodensignaturen in Class Extensions und verhindert nachträgliche Return-Types ([ICODE]: void[/ICODE], [ICODE]: bool[/ICODE]) auf untypisierten XenForo-Core-Methoden.
+[*][B]Setup.php-Symmetrie[/B]: Stellt sicher, dass alle angelegten Tabellen und erweiterten Core-Spalten bei der Deinstallation rückstandsfrei entfernt werden.
+[*][B]Vanilla JS & XF.on-Schutz[/B]: Strikter jQuery-Verzicht, Schutz vor der [ICODE]XF.on(element, event, handler, options)[/ICODE]-Signaturfalle, [ICODE]_files/js/[/ICODE]-Ablageregel und Dev-Import-Regeln.
+[*][B]Native UI & FA 5.x Standard[/B]: Verbot von rohen HTML-[ICODE]<table>[/ICODE]-Layouts zugunsten von [ICODE]structItem[/ICODE], [ICODE]<xf:datalist>[/ICODE], [ICODE]contentRow[/ICODE] und [ICODE]<dl class="pairs">[/ICODE], Verbot von Inline-CSS/JS sowie Schutz vor halluzinierten FontAwesome-6-Klassennamen.
+[*][B]Security & Scaffolding[/B]: PHP 8.2 Baseline / PHP 8.4 Zero-Deprecation-Regeln, striktes Verbot von PHP-Shell-Funktionen ([ICODE]exec()[/ICODE] etc.), Verbot von Scratch-Entity-Skripten und Vorrang für [ICODE]xf-make:*[/ICODE] sowie [ICODE]~~Phrase~~[/ICODE]-CLI-Extraktion.
+[/LIST]
+[*][B]xf23-custom-fields[/B] – Vollständiger Leitfaden zur Implementierung der 6-Schichten-Architektur für eigene XenForo 2.3 Custom Fields ([ICODE]Setup.php[/ICODE], [ICODE]AbstractField[/ICODE], [ICODE]FieldValue[/ICODE], [ICODE]XF:CustomFieldsHolder[/ICODE], [ICODE]Repository[/ICODE], [ICODE]app_setup[/ICODE]-Container, Controller und Makro-Einbindung).
+[/LIST]
+
+[HEADING=2]Voraussetzungen[/HEADING]
+[LIST]
+[*]XenForo 2.3.10+ (Entwicklungsmodus & installierte Basis-Skills via [ICODE]php cmd.php xf-dev:install-ai-agents[/ICODE])
+[*]KI-Coding-Assistent mit Skill-/Kontext-Unterstützung (z. B. Antigravity, Claude Code, Cursor, GitHub Copilot, Cline)
+[/LIST]
+
+[HEADING=2]Einrichtung[/HEADING]
+Kopiere die Ordner aus [ICODE]skills/[/ICODE] in das Verzeichnis [ICODE].agents/skills/[/ICODE] deiner XenForo-Entwicklungsumgebung und ergänze die beiden Einträge in der Skill-Tabelle deiner zentralen [ICODE]AGENTS.md[/ICODE]:
+
+[CODE=markdown]| Skill | When to use |
+|---|---|
+| `xf23-strict-policy` | Always — universal XenForo 2.3 engineering discipline, `XFCP_` signature safety, `Setup.php` symmetry, Vanilla JS & UI standards |
+| `xf23-custom-fields` | When implementing or extending XenForo 2.3 Custom Fields on any content entity |[/CODE]
+
+[B]GitHub-Repository:[/B] [URL='https://github.com/Dice-Dragons/XenForo-AI-Skills']https://github.com/Dice-Dragons/XenForo-AI-Skills[/URL]
